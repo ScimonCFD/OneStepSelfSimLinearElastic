@@ -1,0 +1,33 @@
+#!/bin/bash
+cd ${0%/*} || exit 1    # run from this directory
+
+# Stop at first error
+set -e
+
+# Check if OpenFOAM/FOAM has been sourced
+if [[ -z "${WM_PROJECT}" ]]
+then
+    echo "Please source the OpenFOAM/FOAM bashrc first!"
+    exit 1
+fi
+
+# Check required environment variables are set
+if [[ -z "${SOLIDS4FOAM_INST_DIR}" ]]
+then
+    echo "Please set the SOLIDS4FOAM_INST_DIR environment variable!"
+    exit 1
+fi
+if [[ -z "${PYBIND11_INC_DIR}" ]]
+then
+    echo "Please set the PYBIND11_INC_DIR environment variable!"
+    exit 1
+fi
+if [[ -z "${PYBIND11_LIB_DIR}" ]]
+then
+    echo "Please set the PYBIND11_LIB_DIR environment variable!"
+    exit 1
+fi
+
+# Run the simulations
+cd plateHole && python selfsim_linear_elastic.py
+python post_processor.py

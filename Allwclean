@@ -1,0 +1,23 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # Run from this directory
+
+# Clean cases
+(cd 3x3LinReg/NNBased/pythonNNBasePlateHole/ && ./Allclean)
+(cd 3x3LinReg/Theoretical/solids4foamPlateHole/ && ./Allclean)
+(cd 3x3NN/NNBased/pythonNNBasePlateHole/ && ./Allclean)
+(cd 3x3NN/Theoretical/solids4foamPlateHole/ && ./Allclean)
+(cd 6x6LinReg/NNBased/pythonNNBasePlateHole/ && ./Allclean)
+(cd 6x6LinReg/Theoretical/solids4foamPlateHole/ && ./Allclean)
+(cd 6x6NN/NNBased/pythonNNBasePlateHole/ && ./Allclean)
+(cd 6x6NN/Theoretical/solids4foamPlateHole/ && ./Allclean)
+
+# Clean solvers
+wclean src/solvers/pySolids4Foam
+wclean src/solvers/pythonSolids4Foam
+
+# Clean utilities
+wclean src/utilities/fieldsManipulator
+
+# Clean libraries
+wclean src/libraries/pythonPalLinearElastic
+#------------------------------------------------------------------------------
