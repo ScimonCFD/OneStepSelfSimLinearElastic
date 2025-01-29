@@ -30,4 +30,5 @@ fi
 
 # Run the simulations
 cd plateHole && python selfsim_linear_elastic.py
+
 python post_processor.py
